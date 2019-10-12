@@ -1,13 +1,49 @@
+patches-own [
+  live-neighbors
+]
 
+to setup
+
+  clear-all
+
+  ask patches [
+    set pcolor blue - 3
+    if random 100 < 10 [
+      set pcolor green
+    ]
+  ]
+
+  reset-ticks
+
+end
+
+to go
+
+  ask patches [
+
+    set live-neighbors count neighbors with [ pcolor = green ]
+
+    if live-neighbors = 3 [
+      set pcolor green
+    ]
+
+    if live-neighbors <= 1 or live-neighbors >= 4 [
+      set pcolor blue - 3
+    ]
+  ]
+
+  tick
+
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
 10
-647
-448
+626
+427
 -1
 -1
-13.0
+8.0
 1
 10
 1
@@ -17,15 +53,49 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+-25
+25
+-25
+25
 0
 0
 1
 ticks
 30.0
+
+BUTTON
+0
+10
+66
+43
+NIL
+setup
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
+
+BUTTON
+74
+10
+137
+43
+NIL
+go
+T
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## WHAT IS IT?
