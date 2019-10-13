@@ -20,8 +20,12 @@ end
 to go
 
   ask patches [
-
     set live-neighbors count neighbors with [ pcolor = green ]
+  ]
+
+  ask patches [
+
+
 
     if live-neighbors = 3 [
       set pcolor green
